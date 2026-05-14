@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TheRecipeHub</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:'Poppins', sans-serif;
+    }
+
+    body{
+      background:#fff8f3;
+      color:#222;
+    }
+
+    html{
+      scroll-behavior:smooth;
+    }
+
+    /* NAVBAR */
+
+    nav{
+      width:100%;
+      background:#ff6b35;
+      padding:18px 8%;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      position:sticky;
+      top:0;
+      z-index:1000;
+      box-shadow:0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    nav h1{
+      color:white;
+      font-size:34px;
+      font-weight:700;
+    }
+
+    nav ul{
+      display:flex;
+      gap:30px;
+      list-style:none;
+    }
+
+    nav ul li a{
+      color:white;
+      text-decoration:none;
+      font-size:16px;
+      font-weight:500;
+      transition:0.3s;
+    }
+
+    nav ul li a:hover{
+      color:#ffe4d6;
+    }
+
+    /* HERO */
+
+    .hero{
+      min-height:90vh;
+      background:
+      linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)),
+      url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=1600&auto=format&fit=crop');
+      background-size:cover;
+      background-position:center;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      text-align:center;
+      padding:20px;
+    }
+
+    .hero-content h2{
+      color:white;
+      font-size:65px;
+      margin-bottom:20px;
+    }
+
+    .hero-content p{
+      color:#f3f3f3;
+      font-size:22px;
+      margin-bottom:30px;
+    }
+
+    .search-container{
+      display:flex;
+      justify-content:center;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+
+    .search-container input{
+      width:420px;
+      max-width:90%;
+      padding:16px;
+      border:none;
+      border-radius:10px;
+      outline:none;
+      font-size:16px;
+    }
+
+    .search-container button{
+      padding:16px 28px;
+      border:none;
+      border-radius:10px;
+      background:#ff6b35;
+      color:white;
+      cursor:pointer;
+      font-size:16px;
+      transition:0.3s;
+    }
+
+    .search-container button:hover{
+      background:#e95d28;
+    }
+
+    /* SECTION TITLE */
+
+    .section-title{
+      text-align:center;
+      font-size:40px;
+      margin-bottom:35px;
+      color:#ff6b35;
+      font-weight:700;
+    }
+
+    /* CATEGORY */
+
+    .categories{
+      padding:70px 8%;
+    }
+
+    .category-buttons{
+      display:flex;
+      justify-content:center;
+      flex-wrap:wrap;
+      gap:15px;
+    }
+
+    .category-buttons button{
+      border:none;
+      padding:14px 24px;
+      border-radius:40px;
+      background:white;
+      cursor:pointer;
+      font-size:16px;
+      box-shadow:0 4px 10px rgba(0,0,0,0.1);
+      transition:0.3s;
+    }
+
+    .category-buttons button:hover{
+      background:#ff6b35;
+      color:white;
+      transform:translateY(-3px);
+    }
+
+    /* RECIPES */
+
+    .recipes-section{
+      padding:20px 8% 80px;
+    }
+
+    .recipe-container{
+      display:grid;
+      grid-template-columns:repeat(auto-fit, minmax(320px, 1fr));
+      gap:30px;
+    }
+
+    .recipe-card{
+      background:white;
+      border-radius:20px;
+      overflow:hidden;
+      box-shadow:0 6px 15px rgba(0,0,0,0.1);
+      transition:0.3s;
+      position:relative;
+    }
+
+    .recipe-card:hover{
+      transform:translateY(-5px);
+    }
+
+    .recipe-card img{
+      width:100%;
+      height:240px;
+      object-fit:cover;
+    }
+
+    .recipe-content{
+      padding:22px;
+    }
+
+    .recipe-content h3{
+      color:#ff6b35;
+      margin-bottom:12px;
+      font-size:28px;
+    }
+
+    .recipe-content p{
+      margin-bottom:10px;
+      line-height:1.7;
+      font-size:15px;
+    }
+
+    .recipe-buttons{
+      display:flex;
+      gap:10px;
+      margin-top:20px;
+      flex-wrap:wrap;
+    }
+
+    .recipe-buttons a,
+    .recipe-buttons button{
+      padding:12px 16px;
+      border:none;
+      border-radius:10px;
+      text-decoration:none;
+      cursor:pointer;
+      font-size:14px;
+      transition:0.3s;
+    }
+
+    .video-btn{
+      background:#ff6b35;
+      color:white;
+    }
+
+    .favorite-btn{
+      background:#222;
+      color:white;
+    }
+
+    .recipe-buttons a:hover,
+    .recipe-buttons button:hover{
+      opacity:0.85;
+    }
+
+    /* FEATURES */
+
+    .features{
+      padding:80px 8%;
+      background:#fff0e8;
+    }
+
+    .feature-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+      gap:25px;
+    }
+
+    .feature-box{
+      background:white;
+      padding:30px;
+      border-radius:18px;
+      text-align:center;
+      box-shadow:0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    .feature-box h3{
+      margin:15px 0;
+      color:#ff6b35;
+    }
+
+    /* FAVORITES */
+
+    .favorites-section{
+      padding:80px 8%;
+    }
+
+    .favorite-list{
+      display:flex;
+      flex-wrap:wrap;
+      gap:15px;
+      justify-content:center;
+    }
+
+    .favorite-item{
+      background:#ff6b35;
+      color:white;
+      padding:12px 20px;
+      border-radius:30px;
+      font-size:15px;
+    }
+
+    /* FOOTER */
+
+    footer{
+      background:#222;
+      color:white;
+      text-align:center;
+      padding:25px;
+      margin-top:40px;
+    }
+
+    /* RESPONSIVE */
+
+    @media(max-width:768px){
+
+      nav{
+        flex-direction:column;
+        gap:10px;
+      }
+
+      nav ul{
+        gap:15px;
+      }
+
+      .hero-content h2{
+        font-size:42px;
+      }
+
+      .hero-content p{
+        font-size:18px;
+      }
+
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+
+  <nav>
+    <h1>TheRecipeHub</h1>
+
+    <ul>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#recipes">Recipes</a></li>
+      <li><a href="#categories">Categories</a></li>
+      <li><a href="#favorites">Favorites</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+
+  <section class="hero" id="home">
+
+    <div class="hero-content">
+
+      <h2>Cook Delicious Food Easily</h2>
+
+      <p>Search recipes, explore cuisines and watch YouTube tutorials.</p>
+
+      <div class="search-container">
+
+        <input
+        type="text"
+        id="searchInput"
+        placeholder="Search recipes like pizza, noodles, paneer..."
+        >
+
+        <button onclick="searchRecipe()">
+          Search Recipe
+        </button>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- CATEGORY SECTION -->
+
+  <section class="categories" id="categories">
+
+    <h2 class="section-title">What's On Your Mind?</h2>
+
+    <div class="category-buttons">
+
+      <button onclick="filterRecipes('Indian')">Indian</button>
+
+      <button onclick="filterRecipes('Italian')">Italian</button>
+
+      <button onclick="filterRecipes('Chinese')">Chinese</button>
+
+      <button onclick="filterRecipes('Dessert')">Desserts</button>
+
+      <button onclick="filterRecipes('Healthy')">Healthy</button>
+
+      <button onclick="showAllRecipes()">Show All</button>
+
+    </div>
+
+  </section>
+
+  <!-- RECIPES -->
+
+  <section class="recipes-section" id="recipes">
+
+    <h2 class="section-title">Popular Recipes</h2>
+
+    <div class="recipe-container" id="recipeContainer"></div>
+
+  </section>
+
+  <!-- FEATURES -->
+
+  <section class="features">
+
+    <h2 class="section-title">Features</h2>
+
+    <div class="feature-grid">
+
+      <div class="feature-box">
+        <h3>🍲 Recipe Search</h3>
+        <p>Search recipes instantly using keywords.</p>
+      </div>
+
+      <div class="feature-box">
+        <h3>🎥 Video Tutorials</h3>
+        <p>Watch cooking tutorials directly on YouTube.</p>
+      </div>
+
+      <div class="feature-box">
+        <h3>❤️ Save Favorites</h3>
+        <p>Store your favorite recipes in browser storage.</p>
+      </div>
+
+      <div class="feature-box">
+        <h3>🌎 Multiple Cuisines</h3>
+        <p>Explore Indian, Chinese, Italian and more.</p>
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- FAVORITES -->
+
+  <section class="favorites-section" id="favorites">
+
+    <h2 class="section-title">Your Favorite Recipes</h2>
+
+    <div class="favorite-list" id="favoriteList"></div>
+
+  </section>
+
+  <!-- FOOTER -->
+
+  <footer>
+    <p>
+      © 2026 TheRecipeHub | Designed for Food Lovers 🍕
+    </p>
+  </footer>
+
+  <!-- JAVASCRIPT -->
+
+  <script>
+
+    // RECIPE DATA
+
+    const recipes = [
+
+      {
+        name: "Butter Chicken",
+        category: "Indian",
+        image: "https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?q=80&w=1200&auto=format&fit=crop",
+        ingredients: "Chicken, Butter, Tomato, Cream",
+        steps: "Cook chicken, prepare creamy gravy and serve hot.",
+        video: "https://www.youtube.com/results?search_query=Butter+Chicken+Recipe"
+      },
+
+      {
+        name: "Paneer Tikka",
+        category: "Indian",
+        image: "https://images.unsplash.com/photo-1567188040759-fb8a883dc6d8?q=80&w=1200&auto=format&fit=crop",
+        ingredients: "Paneer, Yogurt, Spices",
+        steps: "Marinate paneer and grill properly.",
+        video: "https://www.youtube.com/results?search_query=Paneer+Tikka+Recipe"
+      },
+
+      {
+        name: "Pizza",
+        category: "Italian",
+        image: "https://images.unsplash.com/photo-1513104890138-7c749659a591?q=80&w=1200&auto=format&fit=crop",
+        ingredients: "Cheese, Dough, Sauce",
+        steps: "Prepare pizza base and bake with toppings.",
+        video: "https://www.youtube.com/results?search_query=Pizza+Recipe"
+      },
+
+      {
+        name: "White Sauce Pasta",
+        category: "Italian",
+        image: "https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?q=80&w=1200&auto=format&fit=crop",
+        ingredients: "Pasta, Milk, Cheese",
+        steps: "Prepare white sauce and mix with pasta.",
+        video: "https://www.youtube.com/results?search_query=White+Sauce+Pasta"
+      },
+
+      {
+        name: "Noodles",
+        category: "Chinese",
+        image: "https://images.unsplash.com/photo-1617093727343-374698b1b08d?q=80&w=1200&auto=format&fit=crop",
+        ingredients: "Noodles, Sauces, Vegetables",
+        steps: "Boil noodles and stir fry vegetables.",
+        video: "https://www.youtube.com/results?search_query=Noodles+Recipe"
+      },
+
+      {
+        name: "Fried Rice",
+        category: "Chinese",
+        image: "https://images.unsplash.com/photo-1603133872878-684f208fb84b?q=80&w=1200&auto=format&fit=crop",
+        ingredients: "Rice, Vegetables, Soy Sauce",
+        steps: "Cook rice and mix with vegetables.",
+        video: "https://www.youtube.com/results?search_query=Fried+Rice+Recipe"
+      },
+
+      {
+        name: "Chocolate Cake",
+        category: "Dessert",
+        image: "https://images.unsplash.com/photo-1578985545062-69928b1d9587?q=80&w=1200&auto=format&fit=crop",
+        ingredients: "Chocolate, Flour, Sugar",
+        steps: "Prepare batter and bake cake.",
+        video: "https://www.youtube.com/results?search_query=Chocolate+Cake+Recipe"
+      },
+
+      {
+        name: "Healthy Salad",
+        category: "Healthy",
+        image: "https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?q=80&w=1200&auto=format&fit=crop",
+        ingredients: "Vegetables, Lettuce, Dressing",
+        steps: "Mix all vegetables and add dressing.",
+        video: "https://www.youtube.com/results?search_query=Healthy+Salad"
+      }
+
+    ];
+
+    // TARGET CONTAINER
+
+    const recipeContainer = document.getElementById('recipeContainer');
+
+    // DISPLAY RECIPES
+
+    function displayRecipes(recipeList){
+
+      recipeContainer.innerHTML = '';
+
+      if(recipeList.length === 0){
+
+        recipeContainer.innerHTML = `
+          <h2>No recipes found.</h2>
+        `;
+
+        return;
+      }
+
+      recipeList.forEach(recipe => {
+
+        recipeContainer.innerHTML += `
+
+          <div class="recipe-card">
+
+            <img src="${recipe.image}" alt="${recipe.name}">
+
+            <div class="recipe-content">
+
+              <h3>${recipe.name}</h3>
+
+              <p>
+                <strong>Category:</strong>
+                ${recipe.category}
+              </p>
+
+              <p>
+                <strong>Ingredients:</strong>
+                ${recipe.ingredients}
+              </p>
+
+              <p>
+                <strong>Steps:</strong>
+                ${recipe.steps}
+              </p>
+
+              <div class="recipe-buttons">
+
+                <a
+                class="video-btn"
+                href="${recipe.video}"
+                target="_blank"
+                >
+                  Watch Video
+                </a>
+
+                <button
+                class="favorite-btn"
+                onclick="addToFavorites('${recipe.name}')"
+                >
+                  Add to Favorites
+                </button>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        `;
+
+      });
+
+    }
+
+    // SEARCH FUNCTION
+
+    function searchRecipe(){
+
+      const input = document
+      .getElementById('searchInput')
+      .value
+      .toLowerCase();
+
+      const filtered = recipes.filter(recipe =>
+        recipe.name.toLowerCase().includes(input)
+      );
+
+      displayRecipes(filtered);
+
+    }
+
+    // CATEGORY FILTER
+
+    function filterRecipes(category){
+
+      const filteredRecipes = recipes.filter(recipe =>
+        recipe.category === category
+      );
+
+      displayRecipes(filteredRecipes);
+
+    }
+
+    // SHOW ALL RECIPES
+
+    function showAllRecipes(){
+      displayRecipes(recipes);
+    }
+
+    // FAVORITES SYSTEM
+
+    let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+
+    function addToFavorites(recipeName){
+
+      if(!favorites.includes(recipeName)){
+
+        favorites.push(recipeName);
+
+        localStorage.setItem(
+          'favorites',
+          JSON.stringify(favorites)
+        );
+
+        loadFavorites();
+
+        alert(recipeName + ' added to favorites!');
+
+      }
+      else{
+        alert('Recipe already in favorites!');
+      }
+
+    }
+
+    // LOAD FAVORITES
+
+    function loadFavorites(){
+
+      const favoriteList = document.getElementById('favoriteList');
+
+      favoriteList.innerHTML = '';
+
+      if(favorites.length === 0){
+
+        favoriteList.innerHTML = `
+          <p>No favorite recipes added yet.</p>
+        `;
+
+        return;
+      }
+
+      favorites.forEach(item => {
+
+        favoriteList.innerHTML += `
+          <div class="favorite-item">
+            ${item}
+          </div>
+        `;
+
+      });
+
+    }
+
+    // ENTER KEY SEARCH
+
+    document
+    .getElementById('searchInput')
+    .addEventListener('keypress', function(event){
+
+      if(event.key === 'Enter'){
+        searchRecipe();
+      }
+
+    });
+
+    // INITIAL LOAD
+
+    displayRecipes(recipes);
+    loadFavorites();
+
+  </script>
+
+</body>
+</html>
+
